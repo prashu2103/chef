@@ -30,7 +30,7 @@ describe Chef::Resource::Group, :requires_root_or_running_windows, :not_supporte
 
   def group_should_exist(group)
     case ohai[:platform_family]
-    when "debian", "fedora", "rhel", "suse", "gentoo", "slackware", "arch"
+    when "debian", "fedora", "rhel", "suse", "gentoo", "slackware", "arch", "amazon"
       expect { Etc.getgrnam(group) }.not_to raise_error
       expect(group).to eq(Etc.getgrnam(group).name)
     when "windows"
@@ -55,7 +55,7 @@ describe Chef::Resource::Group, :requires_root_or_running_windows, :not_supporte
 
   def group_should_not_exist(group)
     case ohai[:platform_family]
-    when "debian", "fedora", "rhel", "suse", "gentoo", "slackware", "arch"
+    when "debian", "fedora", "rhel", "suse", "gentoo", "slackware", "arch", "amazon"
       expect { Etc.getgrnam(group) }.to raise_error(ArgumentError, "can't find group for #{group}")
     when "windows"
       expect { Chef::Util::Windows::NetGroup.new(group).local_get_members }.to raise_error(ArgumentError, /The group name could not be found./)
@@ -297,8 +297,8 @@ describe Chef::Resource::Group, :requires_root_or_running_windows, :not_supporte
   end
 
   let(:group_name) { "group#{SecureRandom.random_number(9999)}" }
-  let(:included_members) { nil }
-  let(:excluded_members) { nil }
+  let(:included_members) { [] }
+  let(:excluded_members) { [] }
   let(:group_resource) do
     group = Chef::Resource::Group.new(group_name, run_context)
     group.members(included_members)
