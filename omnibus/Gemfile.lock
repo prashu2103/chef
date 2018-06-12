@@ -18,8 +18,8 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus-software
-  revision: 0cb3a8dfb6cebd56684c1d4609a676959389e4c5
-  branch: master
+  revision: 8c0e535edf69fbb1d9291702dc906158cbb008ac
+  branch: libxlst
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
