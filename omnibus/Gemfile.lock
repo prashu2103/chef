@@ -18,8 +18,8 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus-software
-  revision: 0cb3a8dfb6cebd56684c1d4609a676959389e4c5
-  branch: master
+  revision: 9ca6a0306691a8a6d9e2917882cbfc0381beb363
+  branch: liblzma
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
