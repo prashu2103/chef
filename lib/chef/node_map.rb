@@ -84,11 +84,7 @@ class Chef
                         else
                           klass.superclass.to_s
                         end
-        # For now, only log the warning.
-        Chef.log_deprecation("Trying to register #{type_of_thing} #{key} on top of existing Chef core #{type_of_thing}. Check if a new version of the cookbook is available.")
-        # In 15.0, uncomment this and remove the log above.
-        # Chef.log_deprecation("Rejecting attempt to register #{type_of_thing} #{key} on top of existing Chef core #{type_of_thing}. Check if a new version of the cookbook is available.")
-        # return
+        Chef::Log.warn("#{type_of_thing} #{key} attempted to load from a cookbook. The #{type_of_thing} #{key} is now included in Chef and takes precedence over the existing cookbook #{type_of_thing} which will be ignored. You may be able to remove this cookbook dependency from your runlist if you do not use other recipes/resources/libraries from the cookbook. Alternatively there may be a newer version of this cookbook without the #{type_of_thing}.")
       end
 
       # The map is sorted in order of preference already; we just need to find
