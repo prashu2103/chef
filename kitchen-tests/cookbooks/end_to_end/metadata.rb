@@ -1,4 +1,4 @@
-name             "base"
+name             "end_to_end"
 maintainer       ""
 maintainer_email ""
 license          "Apache-2.0"
